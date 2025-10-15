@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talwasser – ein kooperatives Erzählspiel</title>
+  <style>
+    :root {
+      --primary: #2c5f4d;
+      --secondary: #4a8c72;
+      --accent: #d4a574;
+      --bg: #f5f1eb;
+      --text: #2c3e50;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+    nav.primary {
+      background: var(--secondary);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: .25rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav.primary a {
+      color: white;
+      text-decoration: none;
+      padding: 1rem 1.1rem;
+      font-weight: 700;
+      display: inline-block;
+      transition: background .2s ease;
+    }
+    nav.primary a:hover, nav.primary a:focus {
+      background: var(--accent);
+      outline: none;
+    }
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: url("Innerthal.jpg") center/cover no-repeat;
+      color: white;
+      background-blend-mode: multiply;
+      background-color: rgba(44, 95, 77, 0.6);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      max-width: 720px;
+      margin: 0 auto 2rem;
+    }
+    .start-button {
+      display: inline-block;
+      padding: 1rem 1.4rem;
+      background: var(--accent);
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .start-button:hover, .start-button:focus {
+      background: #b98754;
+      transform: translateY(-1px);
+      outline: none;
+    }
+    main {
+      max-width: 1000px;
+      margin: 2.5rem auto 0;
+      padding: 0 1.25rem 2rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.25rem 1.25rem 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.15s ease, box-shadow .15s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+    .card h3 { margin: 0 0 .35rem; }
+    .card p { margin: 0 0 .75rem; }
+    .card a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .quicklinks {
+      margin-top: 2rem;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+    .quicklinks ul {
+      columns: 2;
+      column-gap: 2rem;
+      padding-left: 1.1rem;
+      margin: .25rem 0 0;
+    }
+    .quicklinks a { color: var(--primary); }
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Talwasser – ein kooperatives Erzählspiel</h1>
+  </header>
+
+  <!-- PRIMARY NAVIGATION with corrected filenames -->
+  <nav class="primary" aria-label="Hauptnavigation">
+    <a href="index.html">🏡 Startseite</a>
+    <a href="talwasser_spielanleitung.html">📖 Spielanleitung</a>
+    <a href="talwasser_spielbrett.html">🗺️ Spielbrett</a>
+    <a href="talwasser_spielleiter-handbuch.html">🧑‍⚖️ Spielleiter-Handbuch</a>
+    <a href="talwasser_rollenkarten.html">🎭 Rollenkarten</a>
+    <a href="talwasser_complete.html">🧩 Komplettes Spiel</a>
+  </nav>
+
+  <section class="hero">
+    <h1>Willkommen in Talwasser</h1>
+    <p>Ein Dorf, eine Entscheidung, ein gemeinsames Abenteuer.<br>Gestaltet die Zukunft eines ganzen Tals – mit jeder Entscheidung, die ihr trefft.</p>
+    <a href="talwasser_complete.html" class="start-button">🎮 Spiel starten</a>
+  </section>
+
+  <main>
+    <h2>Entdeckt die Welt von Talwasser</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>📖 Spielanleitung</h3>
+        <p>Wie funktioniert das Spiel? Ablauf und Regeln im Überblick.</p>
+        <a href="talwasser_spielanleitung.html">Anleitung öffnen</a>
+      </div>
+      <div class="card">
+        <h3>🗺️ Spielbrett</h3>
+        <p>Die Welt von Talwasser im Überblick.</p>
+        <a href="talwasser_spielbrett.html">Zum Spielbrett</a>
+      </div>
+      <div class="card">
+        <h3>🎭 Rollen</h3>
+        <p>Übernimm eine Rolle und gestalte das Spiel aktiv mit.</p>
+        <a href="talwasser_rollenkarten.html">Rollen ansehen</a>
+      </div>
+      <div class="card">
+        <h3>🧑‍⚖️ Spielleiter</h3>
+        <p>Alle Infos für die Spielleitung.</p>
+        <a href="talwasser_spielleiter-handbuch.html">Zum Handbuch</a>
+      </div>
+      <div class="card">
+        <h3>🧩 Komplettes Spiel</h3>
+        <p>Starte direkt ins Abenteuer.</p>
+        <a href="talwasser_complete.html">Jetzt spielen</a>
+      </div>
+    </div>
+
+    <!-- REDUNDANT ACCESSIBLE LINK LIST (helps on very small screens / if CSS fails) -->
+    <div class="quicklinks" aria-label="Schnellzugriffe">
+      <strong>Schnellzugriffe:</strong>
+      <ul>
+        <li><a href="talwasser_spielanleitung.html">Spielanleitung</a></li>
+        <li><a href="talwasser_spielbrett.html">Spielbrett</a></li>
+        <li><a href="talwasser_spielleiter-handbuch.html">Spielleiter-Handbuch</a></li>
+        <li><a href="talwasser_rollenkarten.html">Rollenkarten</a></li>
+        <li><a href="talwasser_complete.html">Komplettes Spiel</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Talwasser – ein Projekt für kooperatives Geschichtenerzählen
+  </footer>
+</body>
+</html>
