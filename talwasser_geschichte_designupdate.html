@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talwasser – Die Geschichte</title>
+  <style>
+    :root {
+      --primary: #183153;
+      --secondary: #4e89ae;
+      --accent: #ed6663;
+      --light: #f7f9fb;
+      --dark: #0d1b2a;
+      --radius: 12px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    section {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    section h2 {
+      color: var(--primary);
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    section p {
+      margin-bottom: 1rem;
+    }
+    .timeline {
+      position: relative;
+      margin: 3rem 0;
+      padding-left: 2rem;
+      border-left: 3px solid var(--secondary);
+    }
+    .timeline-event {
+      margin-bottom: 2rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+    .timeline-event::before {
+      content: attr(data-year);
+      position: absolute;
+      left: -70px;
+      top: 0;
+      background: var(--secondary);
+      color: white;
+      padding: 0.5rem 0.8rem;
+      border-radius: var(--radius);
+      font-weight: bold;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .highlight {
+      background: var(--secondary);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+    }
+    .quote {
+      background: var(--light);
+      border-left: 5px solid var(--accent);
+      padding: 1.5rem;
+      font-style: italic;
+      margin: 2rem 0;
+      border-radius: var(--radius);
+    }
+    .quote p {
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+    .quote span {
+      display: block;
+      text-align: right;
+      color: var(--secondary);
+      font-weight: bold;
+    }
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    @media (max-width: 768px) {
+      header h1 { font-size: 2rem; }
+      section { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📖 Die Geschichte des Wägitalersees</h1>
+    <p>Chronik eines versunkenen Tals</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Das Innertal vor der Flutung</h2>
+      <p>Im Herzen des Kantons Schwyz lag das Innertal – eine malerische Talschaft mit Wiesen, Holzhäusern und jahrhundertealten Höfen. Generationen lebten dort von Viehzucht, Milchwirtschaft und Alpwirtschaft. Doch Anfang des 20. Jahrhunderts wuchs der Energiebedarf, und das Tal schien ideal für einen Stausee.</p>
+    </section>
+
+    <section class="timeline">
+      <div class="timeline-event" data-year="1918">
+        <h3>Pläne werden bekannt</h3>
+        <p>Die Nordostschweizerischen Kraftwerke AG präsentierten die ersten Entwürfe. Die Bewohner reagierten mit Entsetzen und begannen, Widerstand zu organisieren.</p>
+      </div>
+      <div class="timeline-event" data-year="1920">
+        <h3>Konzessionserteilung</h3>
+        <p>Der Kanton Schwyz erteilte die Baugenehmigung. Trotz Protesten fühlten sich die Menschen machtlos gegenüber der Stromwirtschaft.</p>
+      </div>
+      <div class="timeline-event" data-year="1922">
+        <h3>Baubeginn der Staumauer</h3>
+        <p>Mit dem Bau der 111 Meter hohen Mauer begann das Ende des alten Innerthals. Staub, Lärm und Sprengungen bestimmten den Alltag.</p>
+      </div>
+      <div class="timeline-event" data-year="1923">
+        <h3>Umsiedlung der Bewohner</h3>
+        <p>Die Familien mussten ihre Höfe verlassen. Neue Häuser entstanden in höheren Lagen, aber der Verlust ihrer Heimat blieb tief.</p>
+      </div>
+      <div class="timeline-event" data-year="1924">
+        <h3>Flutung des Tals</h3>
+        <p>Im Sommer 1924 stieg das Wasser. Kirche, Häuser und Felder verschwanden unter der Oberfläche. Eine Kulturlandschaft ging verloren.</p>
+      </div>
+      <div class="timeline-event" data-year="1926">
+        <h3>Kraftwerk nimmt Betrieb auf</h3>
+        <p>Das Wägitalerkraftwerk produzierte erstmals Strom. Der Fortschritt hatte gesiegt – doch viele verloren ihre Heimat.</p>
+      </div>
+    </section>
+
+    <div class="quote">
+      <p>„Wenn ich heute an den See komme, sehe ich nicht das Wasser. Ich sehe die Dächer unserer Häuser, die Kirche, die Wiesen, wo wir spielten.“</p>
+      <span>— Zeitzeugenbericht, 1960er Jahre</span>
+    </div>
+
+    <section class="highlight">
+      <h2>🌊 Leben nach der Flutung</h2>
+      <p>Die umgesiedelten Familien mussten sich neu orientieren. Ältere Menschen fühlten sich entwurzelt, während Jüngere sich anpassten. Doch die Erinnerung an das alte Tal blieb lebendig.</p>
+    </section>
+
+    <section>
+      <h2>Der Wägitalersee heute</h2>
+      <p>Heute ist der Wägitalersee ein Ausflugsziel – friedlich, aber mit einer bewegten Vergangenheit. Das Rollenspiel <strong>Talwasser</strong> ermöglicht es, diese Geschichte nachzuempfinden und sich in die damaligen Menschen hineinzuversetzen.</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Talwasser Projekt
+  </footer>
+</body>
+</html>
