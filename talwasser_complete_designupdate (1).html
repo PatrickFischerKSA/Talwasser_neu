@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talwasser – Rollenspiel</title>
+  <style>
+    :root {
+      --primary: #183153;
+      --secondary: #4e89ae;
+      --accent: #ed6663;
+      --light: #f7f9fb;
+      --dark: #0d1b2a;
+      --radius: 12px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+    nav {
+      background-color: var(--secondary);
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 0.75rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav button {
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    nav button:hover, nav button.active {
+      color: var(--accent);
+    }
+    .section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem;
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    .section.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .panel {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 1.5rem;
+    }
+    .panel h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--light);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s;
+      cursor: pointer;
+      text-align: center;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .phase-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+    .phase-tab {
+      background: var(--secondary);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .phase-tab.active {
+      background: var(--accent);
+    }
+    .phase-content {
+      display: none;
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    }
+    .phase-content.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+    .timer-container {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .timer-display {
+      font-size: 2rem;
+      text-align: center;
+      background: var(--secondary);
+      color: white;
+      padding: 1rem;
+      border-radius: var(--radius);
+      margin-bottom: 0.5rem;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background: #ddd;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 100%;
+      background: var(--accent);
+      transition: width 1s linear;
+    }
+    .timer-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 0.5rem;
+    }
+    button.timer-btn {
+      background: var(--secondary);
+      color: white;
+      padding: 5px 10px;
+      border-radius: var(--radius);
+    }
+    .scoreboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .score-card {
+      background: white;
+      padding: 1rem;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .score-card h4 {
+      margin-bottom: 0.5rem;
+    }
+    .score-card .score {
+      font-size: 1.5rem;
+      color: var(--secondary);
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--primary);
+      color: white;
+      margin-top: 2rem;
+    }
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+      }
+      .phase-tabs {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏔️ TALWASSER 💧</h1>
+    <p>Ein Rollenspiel über Heimat und Erinnerung</p>
+  </header>
+
+  <nav>
+    <button class="active" onclick="showSection('home')">🏠 Start</button>
+    <button onclick="showSection('rollen')">🎭 Rollenkarten</button>
+    <button onclick="showSection('spielbrett')">🎲 Spielbrett</button>
+    <button onclick="showSection('geschichte')">📖 Geschichte</button>
+  </nav>
+
+  <div id="home" class="section active">
+    <div class="panel">
+      <h2>🏔️ Willkommen bei Talwasser</h2>
+      <div class="card-grid">
+        <div class="card" onclick="showSection('rollen')">🎭 Rollenkarten</div>
+        <div class="card" onclick="showSection('spielbrett')">🎲 Spielbrett</div>
+        <div class="card" onclick="showSection('geschichte')">📖 Die Geschichte</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="rollen" class="section">
+    <div class="panel">
+      <h2>🎭 Rollenkarten</h2>
+      <p>Wähle eine Rolle, um mehr über sie zu erfahren.</p>
+      <div class="card-grid">
+        <div class="card">🧑‍🌾 Xaver</div>
+        <div class="card">👩‍🦰 Agnes</div>
+        <div class="card">👵 Rosa</div>
+        <div class="card">👨‍🦳 Dolf</div>
+        <div class="card">👴 Franz</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="spielbrett" class="section">
+    <div class="panel">
+      <h2>🎲 Spielbrett</h2>
+      <div class="phase-tabs">
+        <button class="phase-tab active" onclick="showPhase(1)">Phase 1</button>
+        <button class="phase-tab" onclick="showPhase(2)">Phase 2</button>
+        <button class="phase-tab" onclick="showPhase(3)">Phase 3</button>
+        <button class="phase-tab" onclick="showPhase(4)">Phase 4</button>
+      </div>
+      <div id="phase1" class="phase-content active">
+        <h3>Phase 1: Ankunft</h3>
+        <div class="timer-container">
+          <div class="timer-display" id="timerDisplay1">20:00</div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill1"></div></div>
+          <div class="timer-controls">
+            <button class="timer-btn" onclick="startTimer(1, 20*60)">▶ Start</button>
+            <button class="timer-btn" onclick="pauseTimer(1)">⏸ Pause</button>
+            <button class="timer-btn" onclick="resetTimer(1, 20*60)">↻ Reset</button>
+          </div>
+        </div>
+      </div>
+      <div id="phase2" class="phase-content">
+        <h3>Phase 2: Enthüllung</h3>
+        <div class="timer-container">
+          <div class="timer-display" id="timerDisplay2">30:00</div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill2"></div></div>
+          <div class="timer-controls">
+            <button class="timer-btn" onclick="startTimer(2, 30*60)">▶ Start</button>
+            <button class="timer-btn" onclick="pauseTimer(2)">⏸ Pause</button>
+            <button class="timer-btn" onclick="resetTimer(2, 30*60)">↻ Reset</button>
+          </div>
+        </div>
+      </div>
+      <div id="phase3" class="phase-content">
+        <h3>Phase 3: Abschied</h3>
+        <div class="timer-container">
+          <div class="timer-display" id="timerDisplay3">25:00</div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill3"></div></div>
+          <div class="timer-controls">
+            <button class="timer-btn" onclick="startTimer(3, 25*60)">▶ Start</button>
+            <button class="timer-btn" onclick="pauseTimer(3)">⏸ Pause</button>
+            <button class="timer-btn" onclick="resetTimer(3, 25*60)">↻ Reset</button>
+          </div>
+        </div>
+      </div>
+      <div id="phase4" class="phase-content">
+        <h3>Phase 4: Ritual</h3>
+        <div class="timer-container">
+          <div class="timer-display" id="timerDisplay4">15:00</div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill4"></div></div>
+          <div class="timer-controls">
+            <button class="timer-btn" onclick="startTimer(4, 15*60)">▶ Start</button>
+            <button class="timer-btn" onclick="pauseTimer(4)">⏸ Pause</button>
+            <button class="timer-btn" onclick="resetTimer(4, 15*60)">↻ Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="scoreboard">
+        <div class="score-card"><h4>🧑‍🌾 Xaver</h4><div class="score" id="score-xaver">0</div></div>
+        <div class="score-card"><h4>👩‍🦰 Agnes</h4><div class="score" id="score-agnes">0</div></div>
+        <div class="score-card"><h4>👵 Rosa</h4><div class="score" id="score-rosa">0</div></div>
+        <div class="score-card"><h4>👨‍🦳 Dolf</h4><div class="score" id="score-dolf">0</div></div>
+        <div class="score-card"><h4>👴 Franz</h4><div class="score" id="score-franz">0</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="geschichte" class="section">
+    <div class="panel">
+      <h2>📖 Die Geschichte</h2>
+      <p>Das Wägital wurde 1924 geflutet. Familien verloren ihre Heimat. Diese Geschichte bildet die Grundlage des Spiels.</p>
+      <a href="talwasser_geschichte.html" target="_blank">📖 Mehr erfahren →</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Talwasser Projekt
+  </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+    function showPhase(num) {
+      document.querySelectorAll('.phase-content').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('phase'+num).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    const timers = {};
+    function startTimer(id, duration) {
+      if (timers[id] && timers[id].interval) return;
+      if (!timers[id]) {
+        timers[id] = { remaining: duration, total: duration };
+      }
+      timers[id].start = Date.now();
+      timers[id].interval = setInterval(() => updateTimer(id), 1000);
+    }
+    function pauseTimer(id) {
+      if (timers[id] && timers[id].interval) {
+        clearInterval(timers[id].interval);
+        timers[id].interval = null;
+        timers[id].remaining -= Math.floor((Date.now() - timers[id].start) / 1000);
+      }
+    }
+    function resetTimer(id, duration) {
+      pauseTimer(id);
+      timers[id] = { remaining: duration, total: duration };
+      updateTimer(id);
+    }
+    function updateTimer(id) {
+      const now = Date.now();
+      const elapsed = Math.floor((now - timers[id].start) / 1000);
+      const remaining = timers[id].remaining - elapsed;
+      if (remaining <= 0) {
+        clearInterval(timers[id].interval);
+        timers[id].interval = null;
+        document.getElementById(`timerDisplay${id}`).textContent = "00:00";
+        document.getElementById(`progressFill${id}`).style.width = "0%";
+        alert(`⏰ Phase ${id} ist abgelaufen!`);
+        return;
+      }
+      const min = Math.floor(remaining / 60);
+      const sec = remaining % 60;
+      document.getElementById(`timerDisplay${id}`).textContent = `${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+      const progress = (remaining / timers[id].total) * 100;
+      document.getElementById(`progressFill${id}`).style.width = `${progress}%`;
+    }
+  </script>
+</body>
+</html>
