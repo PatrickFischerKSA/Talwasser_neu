@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talwasser – Spielanleitung</title>
+    <style>
+        :root {
+            --primary: #183153;
+            --secondary: #4e89ae;
+            --accent: #ed6663;
+            --light: #f7f9fb;
+            --dark: #0d1b2a;
+            --radius: 12px;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        header h1 {
+            font-size: 2rem;
+            letter-spacing: 2px;
+        }
+        nav {
+            background-color: var(--secondary);
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 0.75rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: var(--accent);
+        }
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        section {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        section h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        section h3 {
+            color: var(--secondary);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .quick-start, .info-box, .timeline-item, .tip-box {
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .quick-start {
+            background: var(--secondary);
+            color: white;
+            padding-left: 2.5rem;
+        }
+        .quick-start ol {
+            margin-left: 1.5rem;
+        }
+        .info-box {
+            background: #f1f7ff;
+            border-left: 5px solid var(--secondary);
+        }
+        .timeline {
+            position: relative;
+            margin-top: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--secondary);
+        }
+        .timeline-item {
+            position: relative;
+            background: var(--light);
+            margin-left: 60px;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .timeline-item::before {
+            content: attr(data-number);
+            position: absolute;
+            left: -40px;
+            top: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--primary);
+            color: white;
+            margin-top: 2rem;
+        }
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            main {
+                padding: 0.5rem;
+            }
+            .quick-start {
+                padding-left: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🏔️ TALWASSER 💧</h1>
+        <p>Spielanleitung</p>
+    </header>
+    <nav>
+        <a href="#schnellstart">Schnellstart</a>
+        <a href="#rollen">Rollen</a>
+        <a href="#vorbereitung">Vorbereitung</a>
+        <a href="#phasen">Phasen</a>
+        <a href="#punkte">Punkte</a>
+        <a href="#varianten">Varianten</a>
+        <a href="#faq">FAQ</a>
+    </nav>
+    <main>
+        <section id="schnellstart">
+            <h2>🚀 Schnellstart-Anleitung</h2>
+            <div class="quick-start">
+                <h3>In 3 Schritten ins Spiel</h3>
+                <ol>
+                    <li>Rollen wählen</li>
+                    <li>Spielbrett öffnen</li>
+                    <li>Los geht's!</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="rollen">
+            <h2>🎭 Die Rollen</h2>
+            <div class="info-box">
+                <p>Jede Person darf nur ihre eigene Rollenkarte lesen!</p>
+            </div>
+        </section>
+
+        <section id="vorbereitung">
+            <h2>🎬 Vorbereitung</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-number="1">
+                    <h3>Technik aufbauen</h3>
+                    <p>Öffnet die Talwasser Complete Website…</p>
+                </div>
+                <div class="timeline-item" data-number="2">
+                    <h3>Rollen verteilen</h3>
+                    <p>Jede Person erhält eine Rollenkarte…</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="phasen">
+            <h2>🎮 Spielphasen</h2>
+            <p>Phase 1: Ankunft – Phase 4: Lied…</p>
+        </section>
+
+        <section id="punkte">
+            <h2>🏆 Punktesystem</h2>
+            <p>Punkte für Argumente, Erinnerungen und Lied.</p>
+        </section>
+
+        <section id="varianten">
+            <h2>🔄 Varianten & Historie</h2>
+            <p>3er, 4er, Online und historische Infos.</p>
+        </section>
+
+        <section id="faq">
+            <h2>❓ FAQ</h2>
+            <div class="info-box">
+                <p>Muss ich schauspielern? – Nein, es reicht, die Rolle zu vertreten.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 Talwasser Projekt</p>
+    </footer>
+</body>
+</html>
